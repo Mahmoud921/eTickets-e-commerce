@@ -15,6 +15,7 @@ namespace eTickets
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+            AppDbIntializer.Seed(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
