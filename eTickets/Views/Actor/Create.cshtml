@@ -1,0 +1,65 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Add a new Actor";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+
+        <p>
+            <h1>Add a new Actor</h1>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create" asp-controller="Actor" class="form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                </form>
+                <div class="mb-3 text-center">
+                    <img id="ProfilePictureURLPreview" style="border-radius:50%; max-width:200px"/>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ProfilePectureURL" class="form-label"></label>
+                    <input asp-for="ProfilePectureURL" class="form-control" id="ProfilePictureURL" />
+                    <span class="text-danger" asp-validation-for="ProfilePectureURL"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span class="text-danger" asp-validation-for="FullName"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Bio" class="form-label"></label>
+                    <input asp-for="Bio" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Bio"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" value="Create" class="btn btn-outline-success float-end" />
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // أول ما الصفحة تفتح
+        window.addEventListener("DOMContentLoaded", function () {
+            // خليك ماسك الانبوت والصورة
+            const input = document.getElementById("ProfilePictureURL");
+            const preview = document.getElementById("ProfilePictureURLPreview");
+
+            // لما المستخدم يكتب أو يغير الرابط
+            input.addEventListener("input", function () {
+                preview.src = input.value;
+            });
+        });
+    </script>
+}
+
