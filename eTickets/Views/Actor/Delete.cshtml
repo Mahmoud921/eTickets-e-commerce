@@ -1,0 +1,60 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Delete actor";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Delete @Model.FullName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                <div class="form-group text-center">
+                    <img id="ProfilePicturePreview" class="border-info rounded-circle" style="max-width: 150px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfilePectureURL" class="form-label"></label>
+                    <input asp-for="ProfilePectureURL" class="form-control" id="ProfilePectureURL" disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="FullName" class="form-label"></label>
+                    <input asp-for="FullName" class="form-control" disabled />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Bio" class="form-label"></label>
+                    <input asp-for="Bio" class="form-control" disabled />
+                    <span asp-validation-for="Bio" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mt-3">
+                    <form asp-action="DeleteConfirmed" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" class="btn btn-danger float-end" value="Confirm" />
+                    </form>
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profilePicInput = document.getElementById("ProfilePectureURL");
+            const profilePicPreview = document.getElementById("ProfilePicturePreview");
+
+            // Set initial preview on page load
+            profilePicPreview.src = profilePicInput.value;
+
+            // Update preview on input change
+            profilePicInput.addEventListener("input", function () {
+                profilePicPreview.src = profilePicInput.value;
+            });
+        });
+    </script>
+}
